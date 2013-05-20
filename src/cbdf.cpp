@@ -611,7 +611,7 @@ std::string cbdf::getFileName()
 int cbdf::scanForNextEvent()
 {
   //TODO Here be error handling
-  if(eventbuffered)
+  if(eventBuffered)
   {
     
   }else
