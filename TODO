@@ -1,0 +1,7 @@
+Short Term:
+-- Implement Error handling
+-- Test experimental LZO compression
+
+Mid Term:
+-- Check if larger buffers yield a performance gain
+
