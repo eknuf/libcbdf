@@ -4,7 +4,12 @@ project(cbdf)
 SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 
 FIND_PACKAGE(Boost 1.41 REQUIRED COMPONENTS iostreams)
-FIND_PACKAGE(LibLZMA)
+
+# This only works for cmake 2.8 and higher therefore i am using a custom module
+#FIND_PACKAGE(LibLZMA)
+
+FIND_PACKAGE(XZ)
+
 FIND_PACKAGE(LZO)
 
 
@@ -16,7 +21,7 @@ if(DEFINED CMAKE_INSTALL_PREFIX)
 	message(STATUS "Prefix defined ${CMAKE_INSTALL_PREFIX}")
 endif()
 
-if(Boost_VERSION VERSION_GREATER 1.41)
+if(Boost_MINOR_VERSION GREATER 41)
 	message(STATUS "Boost with UUID support found enabling boost::uuid")
 	add_definitions(-DWITH_BOOST_UUID)
 else()
@@ -24,7 +29,7 @@ else()
 	FIND_PACKAGE(UUID-C++ REQUIRED)
 endif()
 
-if(LIBLZMA_FOUND)
+if(XZ_FOUND)
         message(STATUS "Found XZ compression library, enabling support")
         add_definitions(-DWITH_LZMA)
 else()
