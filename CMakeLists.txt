@@ -6,9 +6,11 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 FIND_PACKAGE(Boost 1.41 REQUIRED COMPONENTS iostreams)
 
 # This only works for cmake 2.8 and higher therefore i am using a custom module
-#FIND_PACKAGE(LibLZMA)
-
+IF(CMAKE_MINOR_VERSION LESS 8)
 FIND_PACKAGE(XZ)
+else()
+FIND_PACKAGE(LibLZMA)
+endif()
 
 FIND_PACKAGE(LZO)
 
@@ -29,7 +31,7 @@ else()
 	FIND_PACKAGE(UUID-C++ REQUIRED)
 endif()
 
-if(XZ_FOUND)
+if(LIBLZMA_FOUND)
         message(STATUS "Found XZ compression library, enabling support")
         add_definitions(-DWITH_LZMA)
 else()

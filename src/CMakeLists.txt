@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-if(XZ_FOUND)
+if(LIBLZMA_FOUND)
 SET (CBDF_SOURCES cbdf.cpp lzma.cpp)
 else()
 SET (CBDF_SOURCES cbdf.cpp)
